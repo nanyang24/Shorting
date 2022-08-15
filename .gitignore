@@ -13,7 +13,7 @@ coverage.json
 typechain
 
 # Hardhat
-artifacts
+# artifacts
 cache
 gasReporterOutput.json
 

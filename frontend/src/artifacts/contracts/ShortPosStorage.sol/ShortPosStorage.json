@@ -1,0 +1,10 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "ShortPosStorage",
+  "sourceName": "contracts/ShortPosStorage.sol",
+  "abi": [],
+  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea2646970667358221220f196bee5537db77e4aa65b4c482340763d0e59b500fab4f2ec74be79e6a11ab464736f6c63430008040033",
+  "deployedBytecode": "0x6080604052600080fdfea2646970667358221220f196bee5537db77e4aa65b4c482340763d0e59b500fab4f2ec74be79e6a11ab464736f6c63430008040033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
