@@ -18,7 +18,7 @@ export function useEagerConnect(): boolean {
         try {
           await activate(injected, undefined, true);
         } catch (error: any) {
-          window.alert(
+          console.log(
             'Error!' + (error && error.message ? `\n\n${error.message}` : '')
           );
         }

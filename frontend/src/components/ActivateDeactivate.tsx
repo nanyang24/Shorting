@@ -130,7 +130,7 @@ export function ActivateDeactivate(): ReactElement {
   const { error } = context;
 
   if (!!error) {
-    window.alert(getErrorMessage(error));
+    console.log(getErrorMessage(error));
   }
 
   return (

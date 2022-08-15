@@ -20,7 +20,7 @@ export function SignMessage(): ReactElement {
     event.preventDefault();
 
     if (!library || !account) {
-      window.alert('Wallet not connected');
+      console.log('Wallet not connected');
       return;
     }
 
@@ -30,9 +30,9 @@ export function SignMessage(): ReactElement {
     ): Promise<void> {
       try {
         const signature = await library.getSigner(account).signMessage('👋');
-        window.alert(`Success!\n\n${signature}`);
+        console.log(`Success!\n\n${signature}`);
       } catch (error: any) {
-        window.alert(
+        console.log(
           'Error!' + (error && error.message ? `\n\n${error.message}` : '')
         );
       }

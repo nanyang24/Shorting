@@ -1,0 +1,14 @@
+.wrapper {
+  margin-top: 30px;
+  margin-bottom: 100px;
+  width: 100%;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+
+  .alert {
+    position: absolute;
+    top: 70px;
+  }
+}

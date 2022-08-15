@@ -30,6 +30,7 @@
     "ethereum-waffle": "^3.0.0",
     "ethers": "^5.0.0",
     "hardhat": "^2.8.0",
+    "hardhat-abi-exporter": "^2.10.0",
     "hardhat-gas-reporter": "^1.0.4",
     "prettier": "^2.3.2",
     "prettier-plugin-solidity": "^1.0.0-beta.13",
@@ -42,6 +43,13 @@
   "scripts": {
     "lint": "",
     "lint:fix": "",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "yarn hardhat test",
+    "compile": "yarn hardhat compile",
+    "local-node": "yarn hardhat node",
+    "cronos-mainnet": "yarn hardhat node --fork https://evm.cronos.org",
+    "gen-abi": "yarn hardhat export-abi"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.7.2"
   }
 }

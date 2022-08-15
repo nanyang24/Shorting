@@ -1,0 +1,30 @@
+.footer {
+  position: absolute;
+  bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #a0a0a0;
+  font-family: 'Inter', --apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans,
+    Droid Sans, Helvetica Neue, sans-serif;
+
+  .name {
+    margin-left: 2px;
+    color: #ededed;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 500;
+    border-radius: 9999px;
+    padding: 4px 6px;
+    transition: background 0.15s ease;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover {
+      background: hsla(0, 0%, 100%, 0.077);
+      outline: 0;
+    }
+  }
+}

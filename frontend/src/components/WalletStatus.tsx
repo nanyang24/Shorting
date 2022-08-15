@@ -59,7 +59,7 @@ function BlockNumber(): ReactElement {
           setBlockNumber(undefined);
         }
 
-        window.alert(
+        console.log(
           'Error!' + (error && error.message ? `\n\n${error.message}` : '')
         );
       }
@@ -140,7 +140,7 @@ function Balance(): ReactElement {
         if (!stale) {
           setBalance(undefined);
 
-          window.alert(
+          console.log(
             'Error!' + (error && error.message ? `\n\n${error.message}` : '')
           );
         }
@@ -211,7 +211,7 @@ function NextNonce(): ReactElement {
         if (!stale) {
           setNextNonce(undefined);
 
-          window.alert(
+          console.log(
             'Error!' + (error && error.message ? `\n\n${error.message}` : '')
           );
         }
