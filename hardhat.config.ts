@@ -46,7 +46,17 @@ const config: HardhatUserConfig = {
     currency: 'USD'
   },
   etherscan: {
-    apiKey: process.env.ETHERSCAN_API_KEY
+    apiKey: process.env.ETHERSCAN_API_KEY,
+    customChains: [
+      {
+        network: 'Cronos',
+        chainId: 25,
+        urls: {
+          apiURL: 'https://api.cronoscan.com/api',
+          browserURL: 'https://cronoscan.com'
+        }
+      }
+    ]
   },
   mocha: {
     timeout: 100000000
