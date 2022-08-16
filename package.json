@@ -1,5 +1,5 @@
 {
-  "name": "hardhat-ethers-react-ts-starter",
+  "name": "shorting",
   "version": "0.1.0",
   "license": "MIT",
   "description": "Typescript starter template for hardhat, ethers and react projects using typescript and @web3-react",

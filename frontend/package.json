@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "shorting-interface",
   "version": "0.1.0",
   "license": "MIT",
   "description": "Typescript starter template for hardhat, ethers and react projects using typescript and @web3-react",
@@ -29,6 +29,7 @@
     "classnames": "^2.3.1",
     "ethers": "^5.5.2",
     "react": "^17.0.2",
+    "react-device-detect": "^2.2.2",
     "react-dom": "^17.0.2",
     "react-scripts": "5.0.0",
     "styled-components": "^5.3.5",

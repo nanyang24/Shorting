@@ -10,6 +10,10 @@
   margin: 0 auto;
   position: relative;
 
+  &.mobile {
+    width: unset;
+  }
+
   &:after {
     background-image: radial-gradient(at 27% 37%, #3a8bfd 0, transparent 50%),
       radial-gradient(at 97% 21%, #9772fe 0, transparent 50%), radial-gradient(at 52% 99%, #fd3a4e 0, transparent 50%),
