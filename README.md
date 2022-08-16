@@ -1,6 +1,8 @@
 # Short Selling in DeFi
 #### Aaron Nan      17.08.2022
 
+Main Contract: https://cronoscan.com/address/0xf22450f18342b2e331e27e680857309a39a79527
+
 Preview link: https://shorting-platform.vercel.app
 
 <img width="2560" alt="image" src="https://user-images.githubusercontent.com/17287124/184855657-d194a7a4-fb0f-4c21-916a-ca84df4d0a4b.png">
