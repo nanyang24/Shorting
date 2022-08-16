@@ -399,14 +399,14 @@ export function Short(): ReactElement {
           .mul(totalBorrowAmount)
           .div(BigNumber.from(10).pow(ShortToken?.decimals!));
 
-        const normalizedUsdPrice = underlyingUsdValue
-          .mul(BigNumber.from(10).pow(ShortToken?.decimals!))
-          .mul(BigNumber.from(10).pow(18))
-          .div(BigNumber.from(10).pow(36));
+        // const normalizedUsdPrice = underlyingUsdValue
+        //   .mul(BigNumber.from(10).pow(18))
+        //   .mul(BigNumber.from(10).pow(18))
+        //   .div(BigNumber.from(10).pow(36));
 
         const tonicBorrowApyRate = parseFloat(
           ethers.utils.formatUnits(
-            annualTonicDistributionUsdValue.mul(BigNumber.from(10).pow(18)).div(normalizedUsdPrice),
+            annualTonicDistributionUsdValue.mul(BigNumber.from(10).pow(18)).div(underlyingUsdValue),
             18
           )
         );

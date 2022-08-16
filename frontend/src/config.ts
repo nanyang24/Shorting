@@ -49,7 +49,7 @@ export const TokensMap = {
   CRO: {
     shortName: 'CRO',
     address: '0x5c7f8a570d578ed84e63fdfa7b1ee72deae1ae23',
-    decimals: 8,
+    decimals: 18,
     tTokenAddress: '0xeadf7c01da7e93fdb5f16b0aa9ee85f978e89e95',
     icon: CRO_ICON
   }
