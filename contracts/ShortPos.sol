@@ -235,7 +235,7 @@ contract ShortPos is ShortPosStorage, Ownable {
   }
 
   function _getUniqueId() private returns (uint256) {
-    uint256 id = orderIds[msg.sender] = 1;
+    uint256 id = orderIds[msg.sender];
     orderIds[msg.sender]++;
 
     return id;

@@ -270,27 +270,34 @@ export function Short(): ReactElement {
   const handleShort = async () => {
     if (!shortPosContract || !signer || !shortToken) return;
 
-    console.log('short creating...');
     setIsShorting(true);
 
-    try {
-      const createShortPosTx = await shortPosContract
-        .connect(signer)
-        .createShortPos(
-          TokensMap.ETH.address,
-          ethers.utils.parseEther(shortTokenAmount.toString()),
-          TokensMap.USDC.address
-        );
+    const shortTokenInfo = Object.values(TokensMap).find((t) => {
+      if (t.shortName === shortToken) return t;
+      return false;
+    });
+    const collateralTokenInfo = Object.values(TokensMap).find((t) => {
+      if (t.shortName === collateralToken) return t;
+      return false;
+    });
 
-      await createShortPosTx.wait();
-
-      console.log('short created');
-
-      setIsShorting(false);
-
-      setTabIndex(1);
-    } catch (error) {
-      setIsShorting(false);
+    if (shortTokenInfo && collateralTokenInfo) {
+      try {
+        const createShortPosTx = await shortPosContract
+          .connect(signer)
+          .createShortPos(
+            shortTokenInfo.address,
+            ethers.utils.parseEther(shortTokenAmount.toString()),
+            collateralTokenInfo.address
+          );
+        await createShortPosTx.wait();
+        console.log('short created');
+        setIsShorting(false);
+        setTabIndex(1);
+      } catch (error) {
+        console.error('short error', error);
+        setIsShorting(false);
+      }
     }
   };
 
@@ -335,12 +342,12 @@ export function Short(): ReactElement {
     setShortTokenPrice('0');
     const tokenPriceBN = await getPriceFeed(shortToken);
     const shortTokenInfo = Object.values(TokensMap).find((t) => {
-      if (t.address === shortToken) return t;
+      if (t.shortName === shortToken) return t;
       return false;
     });
 
     if (tokenPriceBN) {
-      const tokenPrice = ethers.utils.formatUnits(tokenPriceBN, shortTokenInfo?.decimals);
+      const tokenPrice = ethers.utils.formatUnits(tokenPriceBN, 18);
       setShortTokenPrice(tokenPrice);
     }
   };
@@ -473,7 +480,7 @@ export function Short(): ReactElement {
     }
   }, [getPosition, tabIndex]);
 
-  function PositionListItem({ orderInfo }: { orderInfo: any }) {
+  function PositionListItem({ orderInfo, index }: { orderInfo: any; index: number }) {
     const {
       id,
       shortToken,
@@ -561,11 +568,11 @@ export function Short(): ReactElement {
           </div>
         </Typography>
         <Typography variant="body1" gutterBottom component="div" className={s.id}>
-          #{id}
+          #{index + 1}
         </Typography>
         <Typography variant="body1" gutterBottom component="div" className={s.debt}>
-          <div className={s.amount}>{ethers.utils.formatUnits(shortTokenAmount, ShortToken?.decimals)}</div>
-          <div className={s.price}>${tokenPrice}</div>
+          <div className={s.amount}>{(+ethers.utils.formatUnits(shortTokenAmount, ShortToken?.decimals)).toFixed(6)}</div>
+          <div className={s.price}>${tokenPrice.toFixed(6)}</div>
         </Typography>
         <Typography variant="body1" gutterBottom component="div" className={s.collateral}>
           <Tooltip title={CollateralToken?.shortName || ''}>
@@ -867,7 +874,7 @@ export function Short(): ReactElement {
             <Skeleton width={'100%'} height={90} />
           </Box>
         ) : !!positionList.length ? (
-          positionList.map((position) => {
+          positionList.map((position, index) => {
             const orderInfo = {
               id: position.id.toNumber(),
               shortToken: position.shortToken,
@@ -878,7 +885,7 @@ export function Short(): ReactElement {
               certificateTokenAmount: position.certificateTokenAmount
             };
 
-            return <PositionListItem orderInfo={orderInfo} key={orderInfo.id} />;
+            return <PositionListItem orderInfo={orderInfo} key={index} index={index} />;
           })
         ) : (
           <Typography className={s.emptyHold}>There is no active position.</Typography>
