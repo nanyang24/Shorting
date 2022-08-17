@@ -29,6 +29,7 @@ import TecTonicCoreABI from '../ABIs/TecTonicCore.json';
 import TonicUSDOracleABI from '../ABIs/TonicUSDOracle.json';
 import ShortPosArtifact from '../artifacts/contracts/ShortPos.sol/ShortPos.json';
 import TERC20ABI from '../ABIs/tErc20.json';
+import ERC20ABI from '../ABIs/erc20.json';
 
 import WBTC_ICON from '../imgs/btc.png';
 import CRO_ICON from '../imgs/cro.png';
@@ -283,6 +284,14 @@ export function Short(): ReactElement {
 
     if (shortTokenInfo && collateralTokenInfo) {
       try {
+        const USDCContract = new ethers.Contract(TokensMap.USDC.address, ERC20ABI, signer);
+
+        const USDCContractTx = await USDCContract.connect(signer).approve(
+          shortPosContract.address,
+          ethers.constants.MaxUint256
+        );
+        await USDCContractTx.wait();
+
         const createShortPosTx = await shortPosContract
           .connect(signer)
           .createShortPos(
@@ -571,7 +580,9 @@ export function Short(): ReactElement {
           #{index + 1}
         </Typography>
         <Typography variant="body1" gutterBottom component="div" className={s.debt}>
-          <div className={s.amount}>{(+ethers.utils.formatUnits(shortTokenAmount, ShortToken?.decimals)).toFixed(6)}</div>
+          <div className={s.amount}>
+            {(+ethers.utils.formatUnits(shortTokenAmount, ShortToken?.decimals)).toFixed(6)}
+          </div>
           <div className={s.price}>${tokenPrice.toFixed(6)}</div>
         </Typography>
         <Typography variant="body1" gutterBottom component="div" className={s.collateral}>
